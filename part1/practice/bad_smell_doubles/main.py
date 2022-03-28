@@ -19,3 +19,10 @@ class SomeClass:
 
     def asc_sorting(self):
         return sorted(self.lst, reverse=False)
+
+    def sorted_func(self):
+        if type(self.lst) == dict:
+            self.lst.sort()
+            return self.lst
+        else:
+            return sorted(self.lst, reverse=False)
