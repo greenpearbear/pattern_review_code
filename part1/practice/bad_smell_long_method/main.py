@@ -12,13 +12,16 @@
 csv = """Вася;39\nПетя;26\nВасилий Петрович;9"""
 
 
-def get_users_list():
+def str_read(str_input):
     # Чтение данных из строки
     data = []
-    for line in csv.split('\n'):
+    for line in str_input.split('\n'):
         name, age = line.split(';')
         data.append({'name': name, 'age': int(age)})
+    return data
 
+
+def sort_dict(data):
     # Сортировка по возрасту по возрастанию
     _new_data = []
     used_person = set()
@@ -41,14 +44,17 @@ def get_users_list():
             if person['name'] in used_person:
                 continue
             else:
-                if not local_minimum is None:
+                if local_minimum is not None:
                     if person['age'] < local_minimum['age']:
                         local_minimum = person
                 else:
                     local_minimum = person
         _new_data.append(local_minimum)
         used_person.add(local_minimum['name'])
+    return _new_data
 
+
+def filter_list(_new_data):
     # Фильтрация
     result_data = []
     for person in _new_data:
@@ -60,4 +66,4 @@ def get_users_list():
 
 
 if __name__ == '__main__':
-    print(get_users_list())
+    print(filter_list(sort_dict(str_read(csv))))
