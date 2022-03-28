@@ -11,7 +11,6 @@
 
 
 class Unit:
-
     def __init__(self, field, x_coord, y_coord, direction, is_fly, crawl):
         self.field = field
         self.x_coord = x_coord
